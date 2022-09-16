@@ -32,6 +32,18 @@ export default function Weather() {
       <input type="submit" />
     </form>
   );
+  let linkToGit = (
+    <div className="linkToGit">
+      <a
+        href="https://github.com/zuzanna-stepnicka/weather-search-app-react"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Open-source code
+      </a>
+      <span>, by Zuzanna Stepnicka</span>
+    </div>
+  );
 
   if (loaded) {
     return (
@@ -45,17 +57,16 @@ export default function Weather() {
           <li>Description: {weather.description}</li>
           <img src={weather.icon} alt="" />
         </ul>
-        <a
-          href="https://github.com/zuzanna-stepnicka/weather-search-app-react"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Open-source code
-        </a>
-        <span>, by Zuzanna Stepnicka</span>
+        {linkToGit}
       </div>
     );
   } else {
-    return form;
+    return (
+      <div>
+        {form}
+
+        {linkToGit}
+      </div>
+    );
   }
 }
