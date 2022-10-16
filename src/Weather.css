@@ -8,8 +8,8 @@
 ul {
   list-style: none;
 }
-.cityName{
-  margin: 30px;
+.cityName {
+  margin: 0px 0px 0px 30px;
   font-size: 40px;
   font-weight: bold;
   text-align: left;
@@ -18,17 +18,19 @@ form {
   margin: 20px;
   width: 100%;
 }
-img{
-  width: 150px;
-  height: 150px;
+img {
+  width: 130px;
+  height: 130px;
+  padding: 10px auto;
 }
 .data1 {
-  text-align: left;
-}
-.data2 {
   text-align: left;
 }
 
 .linkToGit {
   margin: 10px;
+}
+
+.conditions {
+  padding: 30px 0px 0px 0px;
 }
