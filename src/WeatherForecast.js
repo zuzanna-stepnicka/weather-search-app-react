@@ -1,4 +1,4 @@
-import axios, { Axios } from "axios";
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 import "./WeatherForecast.css";

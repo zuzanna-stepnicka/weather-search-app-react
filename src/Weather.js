@@ -67,10 +67,10 @@ export default function Weather() {
           <div className="row data1">
             <div className="col-6">
               <ul>
-                <li>
+                <li key="1_date">
                   <FormatedDate date={weather.date} />
                 </li>
-                <li>{weather.description}</li>
+                <li key="2_description">{weather.description}</li>
               </ul>
             </div>
           </div>
@@ -83,9 +83,9 @@ export default function Weather() {
             </div>
             <div className="col-6 conditions">
               <ul>
-                <li>Wind speed: {weather.wind} m/s</li>
-                <li>Humidity: {weather.humidity} %</li>
-                <li>Pressure: {weather.pressure} hPa</li>
+                <li key="3_wind">Wind speed: {weather.wind} m/s</li>
+                <li key="4_humidity">Humidity: {weather.humidity} %</li>
+                <li key="5_pressure">Pressure: {weather.pressure} hPa</li>
               </ul>
             </div>
           </div>
