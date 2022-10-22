@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import FormatedDate from "./FormatedDate";
@@ -10,6 +10,10 @@ export default function Weather() {
   let [city, setCity] = useState("");
   let [loaded, setLoaded] = useState(false);
   let [weather, setWeather] = useState({});
+
+   useEffect(() => {
+     setLoaded(false);
+   }, [city]);
 
   function updateCity(response) {
     setCity(response.target.value);
