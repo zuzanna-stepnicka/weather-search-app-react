@@ -1,32 +1,44 @@
 import axios, { Axios } from "axios";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import "./WeatherForecast.css";
+import WeatherForecastDay from "./WeatherForecastDay";
 
-export default function WeatherForecast() {
+export default function WeatherForecast(props) {
+  let [loaded, setLoaded] = useState(false);
+  let [forecast, setForecast] = useState(null);
+
+  useEffect(() => {
+    setLoaded(false);
+  }, [props.city]);
+
+  //code that allows you to reset loaded state to false when value chsnges.
+  // value in this case is: props.city
+
   function handleForecast(response) {
-    console.log(response.data);
+    setForecast(response.data.daily);
+    setLoaded(true);
   }
 
-  let apiKey = "40fe6b5at4b35a738783f3e891e2281o";
-  let city = "Edinburgh";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
-  console.log(apiUrl);
-
-  axios.get(apiUrl).then(handleForecast);
-
-  return (
-    <div className="weatherForecast">
+  if (loaded) {
+    return (
       <div className="row">
-        <div className="col">
-          <div className="weatherForecast-day">Mon</div>
-          <div className="weatherForeast-icon">icon</div>
-          <div className="weatherForecast-temp">
-            <span className="weatherForecast-temp-max">19°</span> /{" "}
-            <span className="weatherForecast-temp-min">10°</span>
-          </div>
-        </div>
+        {forecast.map(function (dailyForecast, index) {
+          if (index !== 0 && index < 5) {
+            return (
+              <div className="col">
+                {" "}
+                <WeatherForecastDay forecast={dailyForecast} />
+              </div>
+            );
+          }
+        })}
       </div>
-    </div>
-  );
+    );
+  } else {
+    let apiKey = "40fe6b5at4b35a738783f3e891e2281o";
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${props.city}&key=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleForecast);
+    return null;
+  }
 }

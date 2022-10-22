@@ -16,7 +16,7 @@ export default function Weather() {
   }
   function displayWeather(response) {
     setLoaded(true);
-    console.log(response.data);
+    
     setWeather({
       name: response.data.city,
       temperature: response.data.temperature.current,
@@ -85,7 +85,7 @@ export default function Weather() {
               </ul>
             </div>
           </div>
-          <WeatherForecast />
+          <WeatherForecast city={city} />
         </div>
         {linkToGit}
       </div>
