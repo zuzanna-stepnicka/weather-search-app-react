@@ -1,0 +1,11 @@
+.weatherForecast{
+    text-align: centre;
+    margin: 10px auto;
+}
+.weatherForecast-day{
+    color: rgb(96, 95, 95);
+    font-weight: bold;
+}
+.weatherForecast-temp-min{
+    opacity: 0.8;
+}

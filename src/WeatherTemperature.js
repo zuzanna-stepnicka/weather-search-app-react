@@ -6,15 +6,15 @@ export default function WeatherTemperature(props) {
   let [units, setUnits] = useState("celcius");
   function showFahrenheit(event) {
     event.preventDefault();
-      setUnits("fahrenheit");
+    setUnits("fahrenheit");
   }
   function showCelcius(event) {
     event.preventDefault();
     setUnits("celcius");
-    }
-    function fahrenheit() {
-        return (props.temperature * 9) / 5 + 32;
-    }
+  }
+  function fahrenheit() {
+    return (props.temperature * 9) / 5 + 32;
+  }
   if (units === "celcius") {
     return (
       <div>

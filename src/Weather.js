@@ -3,6 +3,7 @@ import axios from "axios";
 
 import FormatedDate from "./FormatedDate";
 import WeatherTemperature from "./WeatherTemperature";
+import WeatherForecast from "./WeatherForecast";
 import "./Weather.css";
 
 export default function Weather() {
@@ -15,21 +16,23 @@ export default function Weather() {
   }
   function displayWeather(response) {
     setLoaded(true);
-    console.log(new Date(response.data.dt * 1000));
+    console.log(response.data);
     setWeather({
-      name: response.data.name,
-      temperature: response.data.main.temp,
+      name: response.data.city,
+      temperature: response.data.temperature.current,
       wind: response.data.wind.speed,
-      humidity: response.data.main.humidity,
-      pressure: response.data.main.pressure,
-      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
-      description: response.data.weather[0].description,
-      date: new Date(response.data.dt * 1000),
+      humidity: response.data.temperature.humidity,
+      pressure: response.data.temperature.pressure,
+      icon: response.data.condition.icon_url,
+      description: response.data.condition.description,
+      date: new Date(response.data.time * 1000),
     });
   }
   function findWeather(event) {
     event.preventDefault();
-    let Url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=f969f80557f0fc40ffddd519ebd7d7f4&units=metric`;
+    let apiKey = "40fe6b5at4b35a738783f3e891e2281o";
+    let Url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+
     axios.get(Url).then(displayWeather);
   }
   let form = (
@@ -72,7 +75,7 @@ export default function Weather() {
               <img src={weather.icon} alt="" />
             </div>
             <div className="col-3 temp">
-              <WeatherTemperature temperature={weather.temperature}/>
+              <WeatherTemperature temperature={weather.temperature} />
             </div>
             <div className="col-6 conditions">
               <ul>
@@ -82,6 +85,7 @@ export default function Weather() {
               </ul>
             </div>
           </div>
+          <WeatherForecast />
         </div>
         {linkToGit}
       </div>
